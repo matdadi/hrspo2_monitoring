@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <title>Heart Rate-Oxymeter Monitoring</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta http-equiv="refresh" content="2;url=C:/xampp/htdocs/hroxy_monitor/application/views/errors/dashboard.html">
+    <style type="text/css">
+    @font-face {
+        font-family: digital_number;
+        src: url("C:/xampp/htdocs/hroxy_monitor/assets/font/TickingTimebomb/TickingTimebombBB.ttf");
+    }
+
+    body {
+        position: relative;
+        overflow: scroll;
+        background: #232323;
+    }
+
+    #text-1{
+        position: absolute;
+        width: 103px;
+        height: 83px;
+        left: 106px;
+        top: 38px;
+
+        font-family: digital_number;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 64px;
+        line-height: 83px;
+        color: #1D9746;
+    }
+
+    #text-2{
+        position: absolute;
+        height: 186px;
+        left: 255px;
+        top: 38px;
+
+        font-family: digital_number;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 144px;
+        line-height: 186px;
+        color: #1D9746;
+    }
+
+    #text-3{
+        position: absolute;
+        width: 103px;
+        height: 83px;
+        left: 106px;
+        top: 206px;
+
+        font-family: digital_number;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 64px;
+        line-height: 83px;
+        color: #1D9746;
+    }
+
+    #text-4{
+        position: absolute;
+        height: 186px;
+        left: 255px;
+        top: 206px;
+
+        font-family: digital_number;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 144px;
+        line-height: 186px;
+        color: #1D9746;
+    }
+
+    #text-5{
+        position: absolute;
+        width: 52px;
+        height: 83px;
+        left: 400px;
+        top: 309px;
+
+        font-family: digital_number;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 64px;
+        line-height: 83px;
+        color: #1D9746;
+    }
+    </style>
+</head>
+<body>
+    <script>
+        $.getJSON('https://dweet.io/get/latest/dweet/for/heart_moni', function(data) {
+            $("#text-2").html(`${data.with[0].content.hr}`);
+            $("#text-4").html(`${data.with[0].content.hrv}`);
+        });
+    </script>
+<div>
+    <a id="text-1">hr</a>
+    <a id="text-2">--</a>
+    <a id="text-3">oxy</a>
+    <a id="text-4">--</a>
+    <a id="text-5">%</a>
+</div>
+</body>
+</html>
+

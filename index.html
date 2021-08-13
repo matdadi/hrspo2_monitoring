@@ -91,9 +91,19 @@
 </head>
 <body>
     <script>
-        $.getJSON('https://dweet.io/get/latest/dweet/for/heart_moni', function(data) {
-            $("#text-2").html(`${data.with[0].content.hr}`);
-            $("#text-4").html(`${data.with[0].content.hrv}`);
+        $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
+            if (data.feeds[0].field1==null){
+                $("#text-2").html(`--`);
+            }
+            else {
+                $("#text-2").html(`${data.feeds[0].field1}`);
+            }
+            if (data.feeds[0].field2==null){
+                $("#text-4").html(`--`);
+            }
+            else {
+                $("#text-4").html(`${data.feeds[0].field2}`);
+            }
         });
     </script>
 <div>

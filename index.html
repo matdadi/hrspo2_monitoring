@@ -6,7 +6,7 @@
     <style type="text/css">
     @font-face {
         font-family: digital_number;
-        src: url("https://github.com/matdadi/matdadi.github.io/blob/main/TickingTimebomb/TickingTimebombBB.ttf");
+        src: url("TickingTimebomb/TickingTimebombBB.ttf");
     }
 
     body {
@@ -91,18 +91,20 @@
 </head>
 <body>
     <script>
-        $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
-            if (data.feeds[0].field1==null){
+//         $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
+           $.getJSON('https://dweet.io/get/latest/dweet/for/thing', function(data) {
+//             if (data.feeds[0].field1==null){
+               if (data.with[0].content.hr==null){
                 $("#text-2").html(`--`);
             }
             else {
-                $("#text-2").html(`${data.feeds[0].field1}`);
+                $("#text-2").html(`${data.with[0].content.hr}`);
             }
-            if (data.feeds[0].field2==null){
+            if (data.with[0].content.spo==null){
                 $("#text-4").html(`--`);
             }
             else {
-                $("#text-4").html(`${data.feeds[0].field2}`);
+                $("#text-4").html(`${data.with[0].content.spo}`);
             }
         });
     </script>

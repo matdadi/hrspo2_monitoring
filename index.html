@@ -216,9 +216,11 @@
 <script type="text/javascript">
         var hr=0;
         var spo=0;
-        $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
-            hr = parseInt(data.feeds[0].field1)
-            spo = parseInt(data.feeds[0].field2)
+//         $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
+        $.getJSON('https://dweet.io/get/latest/dweet/for/monitoring_pulseoxymeter', function(data) {
+//             hr = parseInt(data.feeds[0].field1)
+            hr = parseInt(data.with[0].content.hr)
+            spo = parseInt(data.with[0].content.spo)
             if (hr==null){
                 $("#text-2").html(`--`);
             }

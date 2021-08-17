@@ -14,7 +14,7 @@
 
     body {
         position: relative;
-        background: linear-gradient(180deg, #FFFFFF 26.53%, #91F09A 100%);
+        background: linear-gradient(180deg, #FFFFFF 67%, #91F09A 100%);
     }
 
     #text-1{
@@ -126,7 +126,7 @@
     @media (max-width: 576px) {
         body {
             position: relative;
-            background: linear-gradient(180deg, #FFFFFF 73.83%, #91F09A 100%);
+            background: linear-gradient(180deg, #FFFFFF 67%, #91F09A 100%);
         }
         #text-1{
             position: absolute;
@@ -224,27 +224,21 @@
             if (hr==null){
                 $("#text-2").html(`--`);
             }
-            else if(hr>150){
-                $("#text-2").html(`${hr}`);
-                $(".main").css("color", "#740F0F");
-                $("body").css("background", "linear-gradient(180deg, #FFFFFF 26.53%, #D70303 100%)");
-            }
             else {
                 $("#text-2").html(`${hr}`);
-                $(".main").css("color", "#1D9746");
 
             }
 
             if (spo==null){
                 $("#text-4").html(`--`);
             }
-            else if(spo<85){
-                $("#text-4").html(`${spo}`);
-                $("body").css("background", "linear-gradient(180deg, #FFFFFF 26.53%, #D70303 100%)");
-            }
             else {
                 $("#text-4").html(`${spo}`);
-                $(".main").css("color", "#1D9746");
+            }
+            
+            if (hr>150 or spo<85){
+                $(".main").css("color", "#740F0F");
+                $("body").css("background", "linear-gradient(180deg, #FFFFFF 67%, #D70303 100%)");
             }
         });
 </script>

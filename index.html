@@ -11,106 +11,164 @@
 
     body {
         position: relative;
-        overflow: scroll;
-        background: #232323;
+        background: linear-gradient(180deg, #FFFFFF 26.53%, #91F09A 100%);
     }
 
     #text-1{
         position: absolute;
-        height: 83px;
-        left: 106px;
-        top: 38px;
+        left: 69px;
+        top: 291px;
 
         font-family: digital_number;
         font-style: normal;
         font-weight: normal;
-        font-size: 64px;
-        line-height: 83px;
-        color: #1D9746;
+        font-size: 55px;
+        line-height: 71px;
+        /* identical to box height */
     }
 
     #text-2{
         position: absolute;
-        height: 186px;
-        left: 255px;
-        top: 38px;
+        left: 157px;
+        top: 292px;
 
         font-family: digital_number;
         font-style: normal;
         font-weight: normal;
-        font-size: 144px;
-        line-height: 186px;
-        color: #1D9746;
+        font-size: 220px;
+        line-height: 155px;
+        /* identical to box height */
     }
 
     #text-3{
         position: absolute;
-        height: 83px;
-        left: 106px;
-        top: 206px;
+        left: 488px;
+        top: 291px;
 
         font-family: digital_number;
         font-style: normal;
         font-weight: normal;
-        font-size: 64px;
-        line-height: 83px;
-        color: #1D9746;
+        font-size: 55px;
+        line-height: 71px;
+        /* identical to box height */
     }
 
     #text-4{
         position: absolute;
-        height: 186px;
-        left: 255px;
-        top: 206px;
+        left: 620px;
+        top: 292px;
 
         font-family: digital_number;
         font-style: normal;
         font-weight: normal;
-        font-size: 144px;
-        line-height: 186px;
-        color: #1D9746;
+        font-size: 220px;
+        line-height: 155px;
+        /* identical to box height */
     }
 
     #text-5{
         position: absolute;
-        height: 83px;
-        left: 435px;
-        top: 309px;
+        left: 903px;
+        top: 405px;
 
         font-family: digital_number;
         font-style: normal;
         font-weight: normal;
         font-size: 64px;
         line-height: 83px;
+        /* identical to box height */
+    }
+        
+    #developer{
+        position: absolute;
+        width: 85px;
+        height: 42px;
+        left: 843px;
+        top: 624px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .up{
+        position: absolute;
+        width: 1024px;
+        height: 181px;
+        left: 0px;
+        top: 0px;
+
+        background: #FFFFFF;
+    }
+
+    .main{
+        position: relative;
+        width: 1024px;
+        height: 720px;
+        margin-left:auto;
+        margin-right:auto;
         color: #1D9746;
+    }
+
+    .logo{
+        position: absolute;
+        height: 69px;
+        left: 53px;
+        top: 64px;
+
     }
     </style>
 </head>
 <body>
-    <script>
-//         $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
-           $.getJSON('https://dweet.io/get/latest/dweet/for/thing', function(data) {
-//             if (data.feeds[0].field1==null){
-               if (data.with[0].content.hr==null){
+<script type="text/javascript">
+        var hr=0;
+        var spo=0;
+        $.getJSON('https://api.thingspeak.com/channels/1473003/feeds.json?results=1', function(data) {
+            hr = parseInt(data.feeds[0].field1)
+            spo = parseInt(data.feeds[0].field2)
+            if (hr==null){
                 $("#text-2").html(`--`);
             }
-            else {
-                $("#text-2").html(`${data.with[0].content.hr}`);
+            else if(hr>150){
+                $("#text-2").html(`${hr}`);
+                $(".main").css("color", "#740F0F");
+                $("body").css("background", "linear-gradient(180deg, #FFFFFF 26.53%, #D70303 100%)");
             }
-            if (data.with[0].content.spo==null){
+            else {
+                $("#text-2").html(`${hr}`);
+                $(".main").css("color", "#1D9746");
+
+            }
+
+            if (spo==null){
                 $("#text-4").html(`--`);
             }
+            else if(spo<85){
+                $("#text-4").html(`${spo}`);
+                $("body").css("background", "linear-gradient(180deg, #FFFFFF 26.53%, #D70303 100%)");
+            }
             else {
-                $("#text-4").html(`${data.with[0].content.spo}`);
+                $("#text-4").html(`${spo}`);
+                $(".main").css("color", "#1D9746");
             }
         });
-    </script>
+</script>
+<div class="main">
+<div class="up">
+    <img class="logo" src="heart.png" alt="pulse oxymeter monitoring">
+</div>
 <div>
     <a id="text-1">hr</a>
     <a id="text-2">--</a>
-    <a id="text-3">spo</a>
-    <a id="text-4">---</a>
+    <a id="text-3">oxy</a>
+    <a id="text-4">--</a>
     <a id="text-5">%</a>
+    <a id="developer">developed by:
+        Dadi Rahmat
+        Rangga Danang</a>
+</div>
 </div>
 </body>
 </html>
